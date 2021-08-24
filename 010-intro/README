@@ -1,4 +1,4 @@
-Installing SBT: http://www.scala-sbt.org/release/docs/Setup.html
+Installing SBT: http://www.scala-sbt.org/
 
 Call the following sbt commands to tinker with this project:
 
@@ -6,15 +6,6 @@ sbt compile      - to build the project
 sbt console      - to drop into REPL with a suitable classpath setup for your project
 sbt clean        - remove sbt generated files
 sbt run          - run the main method if you have such (for instance via App)
-
-After the console command, the REPL is loaded with a suitably setup CLASSPATH.
-So you can for example do:
-
-> import adpro.Exercise85_TestCases._
-
-The REPL will find all the class files (with sbt we shall almost always
-compile our scala files, and load the objects into the REPL from class files.
-Then we can use the REPL to interact with them and debug stuff.)
 
 The following two targets are useful in testing:
 
