@@ -8,8 +8,8 @@
 // To load the file int the REPL use the 'console' command.
 //
 // Continue solving exercises in the order presented in the PDF file. The file
-// shall always compile, run, and pass tests (for the solved exercises), 
-// after you are done with each exercise (if you do them in order).  
+// shall always compile, run, and pass tests (for the solved exercises),
+// after you are done with each exercise (if you do them in order).
 // Compile and test frequently. Best continously.
 
 // The extension of App allows writing the main method statements at the top
@@ -28,7 +28,7 @@ object Exercises extends App with ExercisesInterface {
 
   // Exercise 4
 
-  def isSorted[A] (as: Array[A], ordered: (A,A) =>  Boolean): Boolean = ???
+  def isSorted[A] (as: Array[A], comparison: (A,A) =>  Boolean): Boolean = ???
 
   // Exercise 5
 
