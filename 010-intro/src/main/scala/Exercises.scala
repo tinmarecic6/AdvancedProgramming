@@ -24,11 +24,31 @@ object Exercises extends App with ExercisesInterface {
 
   // Exercise 3
 
-  def fib (n: Int): Int = ???
+  def fib (n: Int): Int = if (n==1) 0 else if(n==2) 1 else fib(n-1) + fib(n-2)
+
+  //tail-recursion version
+  def fib_tail_rec(n:Int):Int ={  
+    def fib_tail(n: Int, a: Int, b: Int): Int ={
+      //println(n)
+      if (n==0) 0
+      else if (n==1) b
+      else fib_tail(n - 1, b, a + b)
+  }
+   fib_tail(n, 0 , 1)
+  }
 
   // Exercise 4
-
-  def isSorted[A] (as: Array[A], comparison: (A,A) =>  Boolean): Boolean = ???
+//kinda works, dont know how to call function with array as argument
+  def isSorted[A] (as: Array[A], comparison: (A,A) =>  Boolean): Boolean = {
+     //@scala.annotation.tailrec
+     def iterator(as:Array[A],a:Int,b:Int):Boolean = {
+       if (as.size == 0 || as.size==1) true else
+          if (b+1<as.size)
+            if (comparison(as(a),as(b))) iterator(as,b,b+1) else false
+          else true
+     }
+  iterator(as,0,1)
+  }
 
   // Exercise 5
 
@@ -42,4 +62,6 @@ object Exercises extends App with ExercisesInterface {
 
   def compose[A,B,C] (f: B => C, g: A => B) : A => C = ???
 
+//val myList = Array(6,2,3,4,5,6)
+//println(isSorted(Array(6,2,3,4,5,6)))
 }

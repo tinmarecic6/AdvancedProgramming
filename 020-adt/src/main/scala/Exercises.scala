@@ -17,31 +17,50 @@ package fpinscala
 object Exercises extends App with ExercisesInterface {
 
   import fpinscala.List._
+  import fpinscala.Exercises._
 
   // Exercise 1 requires no programming
 
   // Exercise 2
 
-  def tail[A] (as: List[A]) :List[A] = ???
+  def tail[A] (as: List[A]) :List[A] = as match{
+    case Nil => throw new Exception("Empty list")
+    case Cons (head,tail) => tail
+  }
 
   // Exercise 3
 
   // @annotation.tailrec
   // Uncommment the annotation after solving to make the
   // compiler check whether you made the solution tail recursive
-  def drop[A] (l: List[A], n: Int) : List[A] = ???
+  def drop[A] (l: List[A], n: Int) : List[A] = l match{
+    case Nil => throw new Exception("Empty list")
+    case Cons(h,t) => if (n>0) drop(t,n-1) else l
+  }
 
   // Exercise 4
 
-  def dropWhile[A] (l: List[A], f: A => Boolean): List[A] = ???
+  def dropWhile[A] (l: List[A], f: A => Boolean): List[A] = l match{
+    case Nil =>  throw new Exception("Empty list")
+    case Cons(h,t) => if (f(h)) dropWhile(t,f) else Cons(h,t)
+  }
 
   // Exercise 5
 
-  def init[A] (l: List[A]): List[A] = ???
+  def init[A] (l: List[A]): List[A] = l match {
+    case Nil => throw new Exception("empty list")
+    case Cons(h,t) => Cons(h,t)
+    
+  }
+   
 
   // Exercise 6
 
-  def length[A] (as: List[A]): Int = ???
+  def length[A] (as: List[A]): Int = as match{
+    case Nil => 0
+    //case Cons(h,t) => 1+length(t)
+    case Cons(h,t) => t.foldRight1(0.0)(_+_)
+  }
 
   // Exercise 7
 
