@@ -169,7 +169,7 @@ object ExercisesOption {
 
   // Exercise 11
 
-  def traverse[A,B] (as: List[A]) (f: A => Option[B]): Option[List[B]] = = {
+  def traverse[A,B] (as: List[A]) (f: A => Option[B]): Option[List[B]] =  {
     def put(elem: A, b: List[Option[B]]) : List[Option[B]] = {
       b ::: List(f(elem))
     }
