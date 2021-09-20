@@ -3,11 +3,15 @@
 // Group number: _____
 //
 // AUTHOR1: Victoria Popescu
-// TIME1: _____ <- how much time have you used on solving this exercise set
+// TIME1: 2H <- how much time have you used on solving this exercise set
 // (excluding reading the book, fetching pizza, and going out for a smoke)
 //
 // AUTHOR2: Tin Marecic
 // TIME2: 2H <- how much time have you used on solving this exercise set
+// (excluding reading the book, fetching pizza, and going out for a smoke)
+//
+// AUTHOR1: Adelina Mahu
+// TIME1: 2H <- how much time have you used on solving this exercise set
 // (excluding reading the book, fetching pizza, and going out for a smoke)
 //
 // You should work with the file by following the associated exercise sheet
@@ -158,10 +162,24 @@ object ExercisesOption {
 
   // Exercise 10
 
-  def sequence[A] (aos: List[Option[A]]): Option[List[A]] = ???
+  def sequence[A] (aos: List[Option[A]]): Option[List[A]] = aos match {
+    case Nil => Some(Nil)
+    case x :: xs => x flatMap(x2 => (sequence(xs) map (x2 :: _)))
+  }
 
   // Exercise 11
 
-  def traverse[A,B] (as: List[A]) (f: A => Option[B]): Option[List[B]] = ???
+  def traverse[A,B] (as: List[A]) (f: A => Option[B]): Option[List[B]] = = {
+    def put(elem: A, b: List[Option[B]]) : List[Option[B]] = {
+      b ::: List(f(elem))
+    }
+
+    def traverseOpt(a: List[A], b: List[Option[B]]) : Option[List[B]] = a match{
+      case Nil => sequence(b)
+      case x :: xs => traverseOpt(xs, put(x,b))
+    }
+
+    traverseOpt(as,List[Option[B]]())
+  }
 
 }
