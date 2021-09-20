@@ -10,7 +10,7 @@
 // TIME2: 2H <- how much time have you used on solving this exercise set
 // (excluding reading the book, fetching pizza, and going out for a smoke)
 //
-// AUTHOR1: Adelina Mahu
+// AUTHOR3: Adelina Mahu
 // TIME1: 2H <- how much time have you used on solving this exercise set
 // (excluding reading the book, fetching pizza, and going out for a smoke)
 //
