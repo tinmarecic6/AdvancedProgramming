@@ -30,12 +30,11 @@ package adpro
 trait OrderedPoint extends scala.math.Ordered[java.awt.Point] {
 
   this: java.awt.Point =>
-
-  override def compare (that: java.awt.Point): Int = {
-    if (this.x < that.x || (this.x == that.x && this.y<that.y)) -1 
-    else if( this.x==that.x && this.y == that.y) 0 
-    else +1
-  }
+    override def compare (that: java.awt.Point): Int = {
+      if ((this.x < that.x) || (this.x == that.x && this.y < that.y)) -1
+      else if (this.x == that.x && this.y == that.y) 0
+      else 1
+    }
 }
 
 // Try the following (and similar) tests in the repl (sbt console):
@@ -54,7 +53,6 @@ object Tree {
   def size[A] (t: Tree[A]): Int = t match {
     case Leaf(a) => 1
     case Branch(l,r) => 1+size(l)+size(r)
-
   }
 
   // Exercise 3
@@ -68,7 +66,7 @@ object Tree {
 
   def map[A,B] (t: Tree[A]) (f: A => B): Tree[B] = t match{
     case Leaf(a) => Leaf(f(a))
-    case Branch(l,r) => Branch(map(l)(f),map(r)(f)) 
+    case Branch(l,r) => Branch(map(l)(f), map(r)(f))
   }
 
   // Exercise 5
@@ -143,10 +141,11 @@ object ExercisesOption {
     case h ::t => Some (h)
   }
 
-  def headGrade (lst: List[(String,Int)]): Option[Int] =
+  def headGrade (lst: List[(String,Int)]): Option[Int] = {
     for {
       x1 <- headOption(lst)
     } yield(x1._2)
+  }
 
   // Exercise 8
 
@@ -156,9 +155,8 @@ object ExercisesOption {
 
   // Exercise 9
 
-  def map2[A,B,C] (ao: Option[A], bo: Option[B]) (f: (A,B) => C): Option[C] = {
-    ao.flatMap(v1 => bo.map(v2 => f(v1,v2)))
-  }
+  def map2[A,B,C] (ao: Option[A], bo: Option[B]) (f: (A,B) => C): Option[C] =
+    ao.flatMap(v1 => bo.map(v2 => f(v1, v2)))
 
   // Exercise 10
 
@@ -169,17 +167,21 @@ object ExercisesOption {
 
   // Exercise 11
 
+<<<<<<< HEAD
   def traverse[A,B] (as: List[A]) (f: A => Option[B]): Option[List[B]] =  {
+=======
+  def traverse[A,B] (as: List[A]) (f: A => Option[B]): Option[List[B]] = {
+>>>>>>> 0c7ab33e1ef7e78e88e4cd59c943d3db09ce0653
     def put(elem: A, b: List[Option[B]]) : List[Option[B]] = {
       b ::: List(f(elem))
     }
 
-    def traverseOpt(a: List[A], b: List[Option[B]]) : Option[List[B]] = a match{
+    def traverseOperation(a: List[A], b: List[Option[B]]) : Option[List[B]] = a match{
       case Nil => sequence(b)
-      case x :: xs => traverseOpt(xs, put(x,b))
+      case x :: xs => traverseOperation(xs, put(x,b))
     }
 
-    traverseOpt(as,List[Option[B]]())
+    traverseOperation(as,List[Option[B]]())
   }
 
 }
