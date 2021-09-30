@@ -1,0 +1,11 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\Stream.scala:93:87: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : a.type (with underlying type A)[0m
+[0m[[0m[31merror[0m] [0m[0m required: A[0m
+[0m[[0m[31merror[0m] [0m[0m  def filter[A] (f:A=>Boolean):Stream[A] = foldRight[Stream[A]](Empty)((a,acc)=>if (f(a)) cons(a,acc) else acc)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\Stream.scala:93:96: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : a.type (with underlying type A)[0m
+[0m[[0m[31merror[0m] [0m[0m required: A[0m
+[0m[[0m[31merror[0m] [0m[0m  def filter[A] (f:A=>Boolean):Stream[A] = foldRight[Stream[A]](Empty)((a,acc)=>if (f(a)) cons(a,acc) else acc)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

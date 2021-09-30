@@ -1,0 +1,180 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(console, Some(632001b1-81fb-4258-baee-68003b042b1c), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / console[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to C:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\target\scala-2.13\classes ...[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:5:12: object scalacheck is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.scalacheck.Gen[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:6:12: object scalacheck is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.scalacheck.Arbitrary[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:7:12: object scalacheck is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.scalacheck.Arbitrary.arbitrary[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:10:17: object scalatest is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0m    extends org.scalatest.freespec.AnyFreeSpec[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:11:14: object scalatest is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0m    with org.scalatest.matchers.should.Matchers[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:12:14: object scalatestplus is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0m    with org.scalatestplus.scalacheck.ScalaCheckPropertyChecks {[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:16:17: value - is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m  "Exercise 11" - {[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:17:55: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m    "Unfold with immediate failure should give empty" in {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:18:46: value should is not a member of adpro.Stream[Nothing][0m
+[0m[[0m[31merror[0m] [0m[0m      Stream.unfold (()) { case () => None } should be (Empty)[0m
+[0m[[0m[31merror[0m] [0m[0m                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:18:53: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m      Stream.unfold (()) { case () => None } should be (Empty)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:27:16: value - is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m  "Exercise 7" - {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:28:26: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m	  "headOption2 (empty)" in {[0m
+[0m[[0m[31merror[0m] [0m[0m	                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:29:32: value should is not a member of Option[A][0m
+[0m[[0m[31merror[0m] [0m[0m      Stream.empty.headOption2 should be (None)[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:29:39: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m      Stream.empty.headOption2 should be (None)[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:33:16: value - is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m  "Exercise 6" - {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:34:43: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m	  "takeWhile2 (_ < 10) gives 9 naturals" in {[0m
+[0m[[0m[31merror[0m] [0m[0m	                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:35:50: value shouldBe is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m      naturals.takeWhile2 { _ < 10 }.toList.size shouldBe (9)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:39:16: value - is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m  "Exercise 5" - {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:41:49: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m    "The succesful test from the exercise text" in {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:42:31: value should is not a member of Boolean[0m
+[0m[[0m[31merror[0m] [0m[0m      naturals.forAll (_ < 0) should be (false)[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:42:38: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m      naturals.forAll (_ < 0) should be (false)[0m
+[0m[[0m[31merror[0m] [0m[0m                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:47:16: value - is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m  "Exercise 4" - {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:48:42: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m	  "takeWhile (_ < 10) gives 9 naturals" in {[0m
+[0m[[0m[31merror[0m] [0m[0m	                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:49:49: value shouldBe is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m      naturals.takeWhile { _ < 10 }.toList.size shouldBe (9)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:52:89: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m    "naturals.takeWhile {_ < 1000000000 }.drop (100).take (50).toList should not crash" in {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:53:78: value should is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m      naturals.takeWhile { _ < 1000000000 }.drop (100).take (50).toList.size should be (50)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:53:85: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m      naturals.takeWhile { _ < 1000000000 }.drop (100).take (50).toList.size should be (50)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:57:16: value - is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m  "Exercise 3" - {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:59:43: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m	  "naturals.take (3) is Stream (1,2,3) " in {[0m
+[0m[[0m[31merror[0m] [0m[0m	                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:61:18: value should is not a member of List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m        s.toList should be (List (1,2,3))[0m
+[0m[[0m[31merror[0m] [0m[0m                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:61:25: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m        s.toList should be (List (1,2,3))[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:64:48: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m    "naturals.drop (3) is Stream (4,5,6,...) " in {[0m
+[0m[[0m[31merror[0m] [0m[0m                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:66:27: value should is not a member of List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m        s.take (3).toList should  be (List (4,5,6))[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:66:35: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m        s.take (3).toList should  be (List (4,5,6))[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:69:78: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m    "naturals.take (1000000000).drop (41).take (10).toList should not crash" in {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:71:14: value should is not a member of Int[0m
+[0m[[0m[31merror[0m] [0m[0m      l.size should be (10)[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:71:21: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m      l.size should be (10)[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:75:16: value - is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m  "Exercise 2" - {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:77:46: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m	  "The Stream(1,2,3).toList is List(1,2,3)" in {[0m
+[0m[[0m[31merror[0m] [0m[0m	                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:81:18: value should is not a member of List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m        s.toList should be (List (1,2,3))[0m
+[0m[[0m[31merror[0m] [0m[0m                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:81:25: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m        s.toList should be (List (1,2,3))[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:85:16: value - is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m  "Exercise 1" - {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:87:49: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m    "The first element of Stream.from (3) is 3" in {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:88:27: value should is not a member of Option[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      from (3).headOption should be (Some (3))[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:88:34: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m      from (3).headOption should be (Some (3))[0m
+[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:91:50: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m    "The second element of Stream.from (3) is 4" in {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:92:32: value should is not a member of Option[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      from (3).tail.headOption should be (Some (4))[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:92:39: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m      from (3).tail.headOption should be (Some (4))[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:95:46: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m	  "The first element of Stream.to (3) is 3" in {[0m
+[0m[[0m[31merror[0m] [0m[0m	                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:96:25: value should is not a member of Option[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      to (3).headOption should be (Some (3))[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:96:32: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m      to (3).headOption should be (Some (3))[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:99:47: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m    "The second element of Stream.to(3) is 2" in {[0m
+[0m[[0m[31merror[0m] [0m[0m                                              ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:100:29: value should is not a member of Option[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      to(3).tail.headOption should be (Some (2))[0m
+[0m[[0m[31merror[0m] [0m[0m                            ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:100:36: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m      to(3).tail.headOption should be (Some (2))[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:103:41: value in is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m	  "The first element of naturals is 1" in {[0m
+[0m[[0m[31merror[0m] [0m[0m	                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:104:25: value should is not a member of Option[Int][0m
+[0m[[0m[31merror[0m] [0m[0m	  	naturals.headOption should be (Some (1))[0m
+[0m[[0m[31merror[0m] [0m[0m	  	                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\040-stream\src\main\scala\adpro\StreamSpec.scala:104:32: not found: value be[0m
+[0m[[0m[31merror[0m] [0m[0m	  	naturals.headOption should be (Some (1))[0m
+[0m[[0m[31merror[0m] [0m[0m	  	                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m57 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 1 s, completed 23. ruj 2021. 17:49:22[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
+[0m[[0m[0mdebug[0m] [0m[0mForcing garbage collection...[0m
