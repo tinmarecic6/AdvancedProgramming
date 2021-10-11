@@ -3,6 +3,7 @@
 *.bak
 *.class
 *.log
+metals.sbt
 
 # sbt specific
 .cache
