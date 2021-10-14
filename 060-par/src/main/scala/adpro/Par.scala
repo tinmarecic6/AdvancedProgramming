@@ -102,16 +102,22 @@ object Par {
 
   // Exercise 2 (CB7.4)
 
-  def asyncF[A,B] (f: A => B) : A => Par[B] = ???
+  def asyncF[A,B] (f: A => B) : A => Par[B] = a => lazyUnit(f(a))
 
 
   // Exercise 3
   //
   // Write the answer here in a comment.
+  //quiz
 
+  def random_list[A](n:Int)(ra:Rand[A]):Rand[List[A]]= 
+  map
   // Exercise 4 (CB7.5)
 
-  def sequence[A] (ps: List[Par[A]]): Par[List[A]] = ???
+  def sequence[A] (ps: List[Par[A]]): Par[List[A]] = ps  match {
+    case Nil => unit(Nil)
+    case h::t => map2(h,sequence(t))(_::_)
+  }
 
   // this is shown in the book:
 
@@ -120,11 +126,22 @@ object Par {
 
   // Exercise 5
 
-  def wget (uris: String*): List[String] = ???
-
+  def wget (uris: String*): List[String] = {
+    def fetch(uris:String) = Source.fromURL(uris)("ISO-8859-1").mkString
+    val ps = uris.toList
+    val t = parMap (ps)(fetch)
+    val es = Executors.newFixedThreadPool(2)
+    (run(es)(t))
+   
+  }
   // Exercise 6 (CB7.6)
 
-  def parFilter[A] (as: List[A]) (f: A => Boolean): Par[List[A]] = ???
+  def parFilter[A] (as: List[A]) (f: A => Boolean): Par[List[A]] =as match {
+    case Nil => unit(Nil)
+    case h :: t => map2(unit(f(h)),parFilter(t)(f)) {(matches, rest) =>
+    if (matches) h::rest else rest
+    } 
+  }
 
   // shown in the book (adjusted for the non-blocking version)
 

@@ -149,5 +149,8 @@ object Stream {
 
   def fibs1  = ???
   def from1 = ???
+  //Lecture quiz
+  def even_from(n: Int) : Stream[Int] = from (n) filter { _%2==0}
+  
 
 }

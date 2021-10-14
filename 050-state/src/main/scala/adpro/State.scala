@@ -35,24 +35,47 @@ object RNG {
 
   // Exercise 1 (CB 6.1)
 
-  def nonNegativeInt (rng: RNG): (Int, RNG) = ???
+  def nonNegativeInt (rng: RNG): (Int, RNG) = rng.nextInt match{
+    case (i,r) if (i<0) => ((-i)+1,r)
+    case t => t
+  }
 
   // Exercise 2 (CB 6.2)
 
-  def double (rng: RNG): (Double, RNG) = ???
+  def double (rng: RNG): (Double, RNG) = nonNegativeInt(rng) match {
+    case (state,range) => ((state/(Int.MaxValue.toDouble + 1)), range)  
+  }
 
   // Exercise 3 (CB 6.3)
 
-  def intDouble (rng: RNG) = ???
+  def intDouble (rng: RNG) : ((Int, Double),RNG) = {
+    val(int1,rng1) = (nonNegativeInt(rng))
+    val(double1,rng2) = (double(rng1))
+    ((int1,double1),rng2)
+  }
 
-  def doubleInt (rng: RNG) = ???
+  def doubleInt (rng: RNG) : ((Double, Int),RNG) = {
+    val(double1,rng1) = (double(rng))
+    val(int1,rng2) = (nonNegativeInt(rng1))
+    ((double1,int1),rng2)
+  }
+
 
   def boolean (rng: RNG): (Boolean, RNG) =
     rng.nextInt match { case (i,rng2) => (i % 2 == 0, rng2) }
 
   // Exercise 4 (CB 6.4)
 
-  def ints (count: Int) (rng: RNG) = ???
+  def ints (count: Int) (rng: RNG) : (List[Int],RNG)= {
+    if (count == 0){
+       (Nil,rng)
+       }
+    else {
+      val(current_el,next_state:RNG) = rng.nextInt 
+      val(list,next_gen2) = ints(count-1)(next_state)
+      (current_el::list,next_gen2)
+      }
+  }
 
   // There is something terribly repetitive about passing the RNG along
   // every time. What could we do to eliminate some of this duplication
@@ -76,11 +99,15 @@ object RNG {
   // Exercise 5 (CB 6.5) (Lazy is added so that the class does not fail
   // at load-time without your implementation).
 
-  lazy val _double: Rand[Double] = ???
+  lazy val _double: Rand[Double] = map (double)(i=>i)
 
   // Exercise 6 (CB 6.6)
 
-  def map2[A,B,C] (ra: Rand[A], rb: Rand[B]) (f: (A, B) => C): Rand[C] = ???
+  def map2[A,B,C] (ra: Rand[A], rb: Rand[B]) (f: (A, B) => C): Rand[C] =
+    x=>{val(a,rng) = ra(x)
+    val(b,fin) = rb(rng)
+    (f(a,b),fin)
+  }
 
   // this is given in the book
 

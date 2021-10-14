@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Tin\Documents\ITU\AdvancedProgramming\050-state\src\main\scala\adpro\State.scala:109:12: value fin is not a member of type parameter C[0m
+[0m[[0m[31merror[0m] [0m[0m    (f(a,b)fin)[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
