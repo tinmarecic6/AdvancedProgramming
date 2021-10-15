@@ -108,10 +108,6 @@ object Par {
   // Exercise 3
   //
   // Write the answer here in a comment.
-  //quiz
-
-  def random_list[A](n:Int)(ra:Rand[A]):Rand[List[A]]= 
-  map
   // Exercise 4 (CB7.5)
 
   def sequence[A] (ps: List[Par[A]]): Par[List[A]] = ps  match {
@@ -119,6 +115,13 @@ object Par {
     case h::t => map2(h,sequence(t))(_::_)
   }
 
+  //quiz
+
+  def random_list[A](n:Int)(ra:Rand[A]):Rand[List[A]]= {
+    val rand_list = List.tabulate(n)(_=>ra)
+    sequence(rand_list)
+  
+  }
   // this is shown in the book:
 
   def parMap[A,B] (as: List[A]) (f: A => B): Par[List[B]] =

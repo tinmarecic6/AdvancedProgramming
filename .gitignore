@@ -1,1 +1,31 @@
+<<<<<<< HEAD
 2021-adpro/
+=======
+*SOLUTION*
+*~
+*.bak
+*.class
+*.log
+metals.sbt
+
+# sbt specific
+.cache
+.history
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+
+# ENSIME specific
+.ensime_cache/
+.ensime
+
+.DS_Store
+>>>>>>> 98e22d487e38137f95cb314b05e8e7d8a23d09e1
