@@ -14,6 +14,9 @@ class ParsersSpec
     // recompiled every time the main code is changed.
     trait ParsersDependency[PE, P[+_]] extends Parsers [PE, P] {
       def dependency = List(
+        this.map_[Any,Any] _,
+        this.map2_[Any,Any,Any] _,
+        this.product_ [Any,Any] _,
         this.digitTimesA,
         this.map2[Int,Int,Int] _,
         this.many1[Unit] _,
