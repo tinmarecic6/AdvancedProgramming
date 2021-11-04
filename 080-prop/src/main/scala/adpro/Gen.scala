@@ -11,35 +11,36 @@ object WarmupExercises {
 
 
   // Exercise 1
-  lazy val rng1: RNG = ???
+  lazy val rng1: RNG = Simple(42)
 
 
   // Exercise 2
-  lazy val x: Int = ???
-  lazy val y: Int = ???
+  val (n,nextRNG) = rng1.nextInt
+  lazy val (x: Int,rng2) = rng1.nextInt
+  lazy val (y: Int,rng3) = rng2.nextInt
 
   // Exercise 3
-  lazy val s_random_int: State[RNG,Int] = ???
-  lazy val s_nonNegativeInt: State[RNG,Int] = ???
-  lazy val s_double: State[RNG,Double] = ???
+  lazy val s_random_int: State[RNG,Int] = State(_.nextInt) 
+  lazy val s_nonNegativeInt: State[RNG,Int] = State(RNG.nonNegativeInt)
+  lazy val s_double: State[RNG,Double] = State(RNG.double)
 
-  lazy val random_int: Int =  ???
-  lazy val nonNegativeInt: Int =  ???
-  lazy val double: Double = ???
+  lazy val random_int: Int = s_random_int.run(rng1)._1
+  lazy val nonNegativeInt: Int =  s_nonNegativeInt.run(rng1)._1
+  lazy val double: Double = s_double.run(rng1)._1
 
   import Gen.state2stream
 
   // Exercise 4
-  def randomDoubles (seed: RNG): Stream[Double] = ???
+  def randomDoubles (seed: RNG): Stream[Double] = state2stream(State(RNG.double))(seed)
 
-  lazy val someRandomDoubles: List[Double] = ???
-  lazy val moreRandomDoubles: List[Double] = ???
+  lazy val someRandomDoubles: List[Double] = randomDoubles(rng1).take(1000).toList
+  lazy val moreRandomDoubles: List[Double] = randomDoubles(rng2).take(1000).toList
 
   // Exercise 5
-  def impureRandomDoubles: Stream[Double] = ???
+  def impureRandomDoubles: Stream[Double] = randomDoubles(Simple(System.currentTimeMillis.toInt))
 
-  lazy val impureDoubles1: Stream[Double] = ???
-  lazy val impureDoubles2: Stream[Double] = ???
+  lazy val impureDoubles1: Stream[Double] = impureRandomDoubles
+  lazy val impureDoubles2: Stream[Double] = impureRandomDoubles
 
 }
 
@@ -54,7 +55,12 @@ case class Gen[A] (sample: State[RNG,A]) {
 
   // Exercise 8
 
-  def listOfN (n: Int): Gen[List[A]] = ???
+  def listOfN (n: Int): Gen[List[A]] ={
+    val li = List.fill(n)(this.sample)
+    val state = State.sequence(li)
+    (Gen(state))
+  }
+   //Gen(State.sequence(List.fill(n,[Gen[A]].sample)))
 
   // Exercise 9
 
@@ -96,11 +102,11 @@ object Gen {
 
   // Exercise 7
 
-  def unit[A] (a: => A): Gen[A] = ???
+  def unit[A] (a: => A): Gen[A] = Gen(State.unit(a))
 
-  def boolean: Gen[Boolean] = ???
+  def boolean: Gen[Boolean] = Gen(State(RNG.boolean))
 
-  def double: Gen[Double] = ???
+  def double: Gen[Double] = Gen(State(RNG.double))
 
   // (Exercise 8 is found in the Gen class above)
 
