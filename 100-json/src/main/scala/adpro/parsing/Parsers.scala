@@ -7,6 +7,7 @@ import language.implicitConversions
 
 import scala.util.matching.Regex
 
+
 object Exercises {
 
   trait Parsers[ParseError,Parser[+_]] { self =>
@@ -19,41 +20,42 @@ object Exercises {
 
     // Exercise 2
 
-    def map[A,B] (p: Parser[A]) (f: A => B): Parser[B] =
-      ???
+    def map[A,B] (p: Parser[A]) (f: A => B): Parser[B] =  p.flatMap(a =>succeed(f(a)))
 
     // Exercise 3
 
     def map2[A,B,C] (p1: Parser[A], p2: => Parser[B]) (f: (A,B) => C)
-      : Parser[C] = ???
+      : Parser[C] = p1.flatMap(pars1 => p2.map(pars2=>f(pars1,pars2)))
 
     // Exercise 4 continues in MyParsers below
 
     // Exercise 6
 
     // Will cause stack overflow if p is not consuming any chars
-    def many[A] (p: Parser[A]): Parser[List[A]] =
-      ???
+    def many[A] (p: Parser[A]): Parser[List[A]] = map2(p,many(p))(_::_) or succeed(List())
 
     // Exercise 7
 
-    def manyA: Parser[Int] =
-      ???
+    def manyA: Parser[Int] = map(many(char('a'))) (_.size)
+    
 
     // Exercise 8
 
-    def product[A,B] (p1: Parser[A], p2: => Parser[B]): Parser[(A,B)] =
-      ???
+    def product[A,B] (p1: Parser[A], p2: => Parser[B]): Parser[(A,B)] = p1.flatMap(a => p2.map(b => (a,b)))
 
     // Exercise 9
 
-    def many1[A] (p: Parser[A]): Parser[List[A]] =
-      ???
+    def many1[A] (p: Parser[A]): Parser[List[A]] = map2(p,many(p))(_::_)
 
     // Exercise 10
 
-    def listOfN[A] (n: Int, p: Parser[A]): Parser[List[A]] =
-      ???
+    def listOfN[A] (n: Int, p: Parser[A]): Parser[List[A]] = 
+    if(n>0){
+      map2(p,listOfN(n-1,p))(_::_) 
+      }
+    else{
+      succeed(List())
+    }
 
     // Exercise 11 continues in MyParsers below
 
@@ -160,7 +162,7 @@ object Exercises {
           matchPattern { case Left (_) => }
 
       def succeed =
-        forAll { (a: Int, s: String) =>
+         { (a: Int, s: String) =>
           self.run (self.succeed (a)) (s) should
             be (Right(a)) }
 
@@ -270,6 +272,8 @@ object Exercises {
         }
       }
 
+
+
     } // Laws
 
   } // Parsers
@@ -349,27 +353,38 @@ object Exercises {
 
     // Exercise 1
 
-    def succeed[A] (a: A): Parser[A] =
-      ???
+    def succeed[A] (a: A): Parser[A] = s=>Success(a,0)
 
     // Exercise 2 continues in the Parsers trait above
 
     // Exercise 4
 
     implicit def string (s: String): Parser[String] =
-      ???
+    (loc:Location) => if(loc.cursor.startsWith(s)){
+      Success(s,s.size)
+    }else{
+      Failure(loc.toError("Expected"+s))
+    }
 
     // Exercise 5
 
-    def or[A] (p1: Parser[A], p2: => Parser[A]): Parser[A] =
-      ???
+    def or[A] (p1: Parser[A], p2: => Parser[A]): Parser[A] =  {
+      (loc:Location) => p1(loc) match{
+      case Failure(e) => p2(loc)
+      case r => r
+      }
+    }
 
     // Exercise 6 continues in the abstract trait Parsers
 
     // Exercise 11
 
-    implicit def regex (r: Regex): Parser[String] =
-      ???
+    implicit def regex (r: Regex): Parser[String] = 
+    (loc:Location) => r.findFirstIn(loc.cursor) match {
+      case None => Failure(loc.toError("Some Error"))
+      case Some(a) => string(a)(loc)
+
+    }
 
     // Exercise 12 continues below in the JSON parser
 
@@ -393,42 +408,33 @@ object Exercises {
 
     // Exercise 12
 
-    lazy val QUOTED: Parser[String] =
-      ???
+    lazy val QUOTED: Parser[String] = """"([^"]*)"""".r.map{_ dropRight 1 substring 1}
 
-    lazy val DOUBLE: Parser[Double] =
-      ???
+    lazy val DOUBLE: Parser[Double] = """(\+|-)?[0-9]+(\.[0-9]+((e|E)(-|\+)?[0-9]+)?)?""".r.map { _.toDouble }
 
-    lazy val ws: Parser[Unit] =
-      ???
+    lazy val ws: Parser[Unit] = """\s+""".r map { _ => () }
 
     // Exercise 13
 
-    lazy val jnull: Parser[JSON] =
-      ???
+    lazy val jnull: Parser[JSON] = "null" |* ws.? |* succeed (JNull)
 
-    lazy val jbool: Parser[JBool] =
-      ???
+    lazy val jbool: Parser[JBool] =  ("true" |* ws.? |* succeed (JBool(true ))) | ("false" |* ws.? |* succeed(JBool(false)))
 
-    lazy val jstring: Parser[JString] =
-      ???
 
-    lazy val jnumber: Parser[JNumber] =
-      ???
+    lazy val jstring: Parser[JString] = { QUOTED *| ws.? } map { JString(_) }
+
+    lazy val jnumber: Parser[JNumber] = { DOUBLE *| ws.? } map { JNumber(_) }
 
     // Exercise 14
 
-    lazy val jarray: Parser[JArray] =
-      ???
+    lazy val jarray: Parser[JArray] =   { "[" |* ws.? |* (json *| ",".? *| ws.? ).* *| "]" *| ws.? }.map { l => JArray (l.toIndexedSeq) }
+       
 
-    lazy val field: Parser[(String,JSON)] =
-      ???
+    lazy val field: Parser[(String,JSON)] = QUOTED *| ws.? *| ":" *| ws.? ** json *| ",".? *| ws.?
 
-    lazy val jobject: Parser[JObject] =
-      ???
+    lazy val jobject: Parser[JObject] = { "{" |* ws.? |* field.* *| "}" *| ws.? }.map { l => JObject (l.toMap) }
 
-    lazy val json: Parser[JSON] =
-      ???
+    lazy val json: Parser[JSON] = ws.? |* { jstring | jnumber | jnull |  jbool | jarray | jobject }
 
   } // JSONParser
 
