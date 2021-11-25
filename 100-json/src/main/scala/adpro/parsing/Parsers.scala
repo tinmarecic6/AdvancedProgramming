@@ -434,7 +434,12 @@ object Exercises {
 
     lazy val jobject: Parser[JObject] = { "{" |* ws.? |* field.* *| "}" *| ws.? }.map { l => JObject (l.toMap) }
 
+<<<<<<< HEAD
     lazy val json: Parser[JSON] = ws.? |* { jstring | jnumber | jnull |  jbool | jarray | jobject }
+=======
+    lazy val json: Parser[JSON] =
+      ws.? |* { jstring | jnumber | jnull |  jbool | jarray | jobject }
+>>>>>>> 16246721881f66dafd098140d2296bf54ab8a956
 
   } // JSONParser
 
