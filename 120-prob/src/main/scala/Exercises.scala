@@ -151,8 +151,8 @@ object Exercises {
   // _____
 
   // Now we are going to make the observation that Paula wins. Use the observe
-  // function on the gameResult.  See documentation:
-  // https://www.cra.com/Figaro_ScalaDoc/com/cra/figaro/language/Element.html#observe(observation:Element.this.Value):Unit
+  // function on the gameResult.  See the tutorial pdf file page 15.
+  //
   //
   // This is unfortunately an impure call in Figaro, so let me make it, so you
   // are not getting used to it :)
