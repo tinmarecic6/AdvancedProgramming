@@ -11,8 +11,7 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5"
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.5"
 libraryDependencies += "com.cra.figaro" %% "figaro" % "5.0.0.0"
 
-initialCommands in console := """
-//import adpro.BasicProbability._
+console / initialCommands := """
 import com.cra.figaro.language.{Element, Constant, Flip, Universe, Select}
 import com.cra.figaro.library.compound._
 import com.cra.figaro.library.atomic.continuous.{Beta, AtomicBeta}
