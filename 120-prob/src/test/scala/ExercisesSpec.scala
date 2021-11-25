@@ -35,14 +35,7 @@ class ExercisesSpec extends FreeSpec with Matchers with PropertyChecks {
   //  (1 + n div 2) / (n+1) for the first player
   //  (n div 2) / (n+1)     for the second player
 
-  "Exercise 5" - {
-
-    s"the posterior chance of an odd urn after Player1 wins should be greater than 1/2" in {
-
-      Exercises.posteriorOdd should be > 0.5
-      info ("Prob. that we had an odd-sized urn: ${Exercises.posteriorOdd}" )
-
-    }
+  "Exercise 6" - {
 
     s"blackBallsNo is uniform in range [0,${Exercises.UpperBound})" in {
 
@@ -67,6 +60,16 @@ class ExercisesSpec extends FreeSpec with Matchers with PropertyChecks {
       }
     }
 
+    s"the posterior chance of an odd urn after Player1 wins should be greater than 1/2" in {
+
+      Exercises.posteriorOdd should be > 0.5
+      info ("Prob. that we had an odd-sized urn: ${Exercises.posteriorOdd}" )
+
+    }
+  }
+
+
+  "Exercise 5" - {
 
     s"Prob. that Paula has started given that she won, ${Exercises.BallsNo} balls in the urn" in {
       if (Exercises.BallsNo % 2 == 0)
