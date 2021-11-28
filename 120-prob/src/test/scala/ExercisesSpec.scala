@@ -15,14 +15,11 @@ import org.scalatest.prop.TableDrivenPropertyChecks._
 
 class ExercisesSpec extends FreeSpec with Matchers with PropertyChecks {
 
-  val Err: Double = 0.03
+  val Err: Double = 0.03;
 
 
   // n is the number of black balls (not the total number of balls)
-  def analyticalP1 (n: Int): Double =
-    if (n % 2 == 0)
-      (1 + n/2) / (n + 1.0) // see notes below
-    else 0.5
+  def analyticalP1 (n: Int): Double = if (n % 2 == 0) (1 + n/2) / (n + 1.0) else 0.5
 
   // n = 3 (#black)
   // 1/4 + 1/2 * (3/4*2/3) = 1/4 + 1/4 = 1/2

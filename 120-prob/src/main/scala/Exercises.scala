@@ -212,7 +212,7 @@ object Exercises {
   //
   // The argument list can be generated using List.tabulate[A].
 
-  lazy val blackBallsNo: Element[Int] = Uniform(List.tabulate(UpperBound)(n=>n):_*)
+  lazy val blackBallsNo: Element[Int] = Uniform(List.tabulate(UpperBound-1)(n=>n):_*)
 
   // Now convert the prior distribution on the initial number of black balls in
   // the urn, into a distribution over the winning player.  Since the game is
