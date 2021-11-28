@@ -212,7 +212,7 @@ object Exercises {
   //
   // The argument list can be generated using List.tabulate[A].
 
-  lazy val blackBallsNo: Element[Int] = Uniform(List.tabulate(UpperBound-1)(n=>n):_*)
+  lazy val blackBallsNo: Element[Int] = Uniform(List.tabulate(UpperBound)(n=>n):_*)
 
   // Now convert the prior distribution on the initial number of black balls in
   // the urn, into a distribution over the winning player.  Since the game is
@@ -226,8 +226,8 @@ object Exercises {
   // Uncomment the following to assert that the chances of winning by Paul and
   // Peter are equal
 
-  val o1 = outcome
-  o1 observe (Paula)
+/*   val o1 = outcome
+  o1 observe (Paula) */
 
   // ^-- When you uncomment this, the test on blackBallsNo will fail. This is
   // expected, as no longer all values are equally likely.  The prior turns into
@@ -246,7 +246,7 @@ object Exercises {
   // This version returns the probability that the predicate p holds on the
   // values generated with 'distribution'.
 
-  lazy val posteriorOdd: Double = Importance.probability(blackBallsNo,( (n: (Int)) => n % 2 == 1)) // probability that the number of balls was odd
+  lazy val posteriorOdd: Double = Importance.probability(Uniform(List.tabulate(UpperBound)(n=>n):_*),( (n: (Int)) => n % 2 == 1)) // probability that the number of balls was odd
 
   // Is the posteriorOdd greater than 1/2?
 
