@@ -5,11 +5,11 @@ object Example1 {
 
   // The running example (a nested value structure)
 
-	case class Company (customers: Customer*)
-	case class Customer (persons: Contact*)
-	case class Contact (name: String, tags :String*)
+  case class Company (customers: Customer*)
+  case class Customer (persons: Contact*)
+  case class Contact (name: String, tags: String*)
 
-	val c = Company (
+  val c = Company (
       Customer (
         Contact ("Andrzej", "boring", "unpredictable"),
         Contact ("Paco", "helpful", "serious"),
@@ -18,14 +18,10 @@ object Example1 {
         Contact ("Bugvi", "fast", "attentive"),
         Contact ("Nikolaj", "dilligent", "controlled")
       ),
-			Customer (
-        Contact("Mads", "important")
+      Customer (
+        Contact ("Mads", "important")
       )
     )
-
-
-
-
 
   // Let's get tags of Andrzej out of the 'c' object
   // and add a new tag
@@ -43,7 +39,7 @@ object Example1 {
 
   "annoying" :: tags
 
-  // In Java we could just do, but immutable lists do not have 'add'
+  // In Java we could just do 'add', but immutable lists do not have 'add'
 
   // tags.add ("annoying")
 
@@ -80,19 +76,19 @@ object Example2 {
   //
   // Let's implement copy manually for our classes:
 
-	case class Company (customers: Customer*) {
+  case class Company (customers: Customer*) {
 
     def copy (customers: Seq[Customer] = this.customers) =
       Company (customers: _*)
   }
 
-	case class Customer (persons: Contact*) {
+  case class Customer (persons: Contact*) {
 
     def copy (persons: Seq[Contact] = this.persons) =
       Customer (persons: _*)
   }
 
-	case class Contact (name: String, tags: String*) {
+  case class Contact (name: String, tags: String*) {
 
     def copy (name: String = this.name, tags: Seq[String] = this.tags): Contact =
       Contact (name, tags: _*)
@@ -101,21 +97,19 @@ object Example2 {
 
 
   // No change here
-	val c = Company (
-      Customer (
-        Contact ("Andrzej", "boring", "unpredictable"),
-        Contact ("Paco", "helpful", "serious"),
-        Contact ("Anders", "nice", "crazy"),
-        Contact ("Alfredo", "clever", "absent-minded"),
-        Contact ("Bugvi", "fast", "attentive"),
-        Contact ("Nikolaj", "dilligent", "controlled")
-      ),
-			Customer (
-        Contact("Mads", "important")
-      )
+  val c = Company (
+    Customer (
+      Contact ("Andrzej", "boring", "unpredictable"),
+      Contact ("Paco", "helpful", "serious"),
+      Contact ("Anders", "nice", "crazy"),
+      Contact ("Alfredo", "clever", "absent-minded"),
+      Contact ("Bugvi", "fast", "attentive"),
+      Contact ("Nikolaj", "dilligent", "controlled")
+    ),
+    Customer (
+      Contact("Mads", "important")
     )
-
-
+  )
 
   // We can use copy to simplify things a bit, but not much
   // (still useful that Scala generates copy for  most classes)
@@ -156,7 +150,6 @@ object Example2 {
 object Example3 {
 
   import monocle._
-  import monocle.macros.GenLens
   import monocle.macros.syntax.lens._
 
   // An example with lenses (Monocle syntax):
@@ -173,32 +166,32 @@ object Example3 {
       Customer (persons: _*)
   }
 
-	case class Contact (name: String, tags: String*) {
+  case class Contact (name: String, tags: String*) {
 
     def copy (name: String = this.name, tags: Seq[String] = this.tags): Contact =
       Contact (name, tags: _*)
   }
 
-	val c = Company (
-      Customer (
-        Contact ("Andrzej", "boring", "unpredictable"),
-        Contact ("Paco", "helpful", "serious"),
-        Contact ("Anders", "nice", "crazy"),
-        Contact ("Alfredo", "clever", "absent-minded"),
-        Contact ("Bugvi", "fast", "attentive"),
-        Contact ("Nikolaj", "dilligent", "controlled")
-      ),
-			Customer (
-        Contact("Mads", "important")
-      )
+  val c = Company (
+    Customer (
+      Contact ("Andrzej", "boring", "unpredictable"),
+      Contact ("Paco", "helpful", "serious"),
+      Contact ("Anders", "nice", "crazy"),
+      Contact ("Alfredo", "clever", "absent-minded"),
+      Contact ("Bugvi", "fast", "attentive"),
+      Contact ("Nikolaj", "dilligent", "controlled")
+    ),
+    Customer (
+      Contact("Mads", "important")
     )
+  )
 
 
   // We jump over these in the lecture presentation (you can study them after
   // class, or we can explain a bit in the end of the lecture if there is time)
 
   // A lens that extracts tags from a contact and allows modifying them
-  val _tags = GenLens[Contact] (_.tags)
+  val _tags = Focus[Contact] (_.tags)
 
 
   // A lens that extracts a contact by name and allows modifying it
