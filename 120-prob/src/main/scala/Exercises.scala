@@ -69,8 +69,7 @@ object Exercises {
   //
   // Flip (probability: Double): Element[Boolean]
 
-  def pick (n: Int): Element[Boolean] = ???
-
+  def pick (n: Int): Element[Boolean] = Flip(1.0/(n+1.0))
   // Exercise 2.
   //
   // Write a function 'move' that given the initial player and the number of
@@ -84,7 +83,11 @@ object Exercises {
   // This constructor returns a distribution where the value 'a' has probability
   // '1'.
 
-  def move (player: Player, n: Int): Element[Player] = ???
+  def move (player: Player, n: Int): Element[Player] = for{
+    ball <- pick(n)
+    winner <- if(ball) Constant(player) else move(next(player),n-1) 
+  }yield(winner)
+  
 
   // Exercise 3.
   //
@@ -100,14 +103,14 @@ object Exercises {
   // Importance.probability[A] (distribution: Element[A], value: A): Double
 
   // Probability that Paula wins given Paula starts (the total no of balls: BallsNo)
-  def probPaula: Double = ???
+  def probPaula: Double = Importance.probability(move(Paula,BallsNo-1),Paula)
 
   // Probability that Paula wins given Peter starts (the total no of balls: BallsNo)
-  def probPeter: Double = ???
+  def probPeter: Double = Importance.probability(move(Peter,BallsNo-1),Paula)
 
   // Which strategy is beter for Paula? What if BallsNo == 9?
   //
-  // Write your answer here in a comment: ___
+  // Write your answer here in a comment: It is better for Paula if she starts first.
 
 
   // Exercise 4.
@@ -137,14 +140,16 @@ object Exercises {
   //
   // We first create a uniform prior for the first mover:
 
-  val firstMover = Uniform (Paula, Peter) // uniform prior
+  val firstMover = Uniform(Paula, Peter) // uniform prior
 
   // Now create a nullary function 'gameResult' that picks the first mover
   // randomly using 'firstMover' and then returns the probability distribution
   // for a game played with BallsNo balls in the urn:
 
-  def gameResult: Element[Player] = ???
-
+  def gameResult: Element[Player] =for{
+    player <- firstMover
+    winner <- move(player,BallsNo)
+  }yield(winner)
   // What is the probability that Paula wins with this uniform prior? Does it
   // agree with your intuition?
   //
@@ -158,7 +163,7 @@ object Exercises {
   // are not getting used to it :)
 
   lazy val gameWonByPaula = gameResult
-  // gameWonByPaula.observe (Paula)
+  gameWonByPaula.observe (Paula)
 
   // ^-- Uncomment this when everything above works
   // Keeping this commented allows the testsuite to work while you are not done
@@ -168,7 +173,7 @@ object Exercises {
   // performed under the condition that Paula has won.
 
   // Compute the probability that Paula has started
-  def probPaulaStarted: Double = ???
+  def probPaulaStarted: Double = if(firstMover == Paula) probPaula else probPeter
 
   // Does this probability depend on the number of balls in the urn in the
   // urn being even or odd? What if it is even? What if it is odd?
@@ -207,7 +212,7 @@ object Exercises {
   //
   // The argument list can be generated using List.tabulate[A].
 
-  lazy val blackBallsNo: Element[Int] = ???
+  lazy val blackBallsNo: Element[Int] = Uniform(List.tabulate(UpperBound)(n=>n):_*)
 
   // Now convert the prior distribution on the initial number of black balls in
   // the urn, into a distribution over the winning player.  Since the game is
@@ -221,8 +226,8 @@ object Exercises {
   // Uncomment the following to assert that the chances of winning by Paul and
   // Peter are equal
 
-  // val o1 = outcome
-  // o1 observe (Paula)
+/*   val o1 = outcome
+  o1 observe (Paula) */
 
   // ^-- When you uncomment this, the test on blackBallsNo will fail. This is
   // expected, as no longer all values are equally likely.  The prior turns into
@@ -241,7 +246,7 @@ object Exercises {
   // This version returns the probability that the predicate p holds on the
   // values generated with 'distribution'.
 
-  lazy val posteriorOdd: Double = ??? // probability that the number of balls was odd
+  lazy val posteriorOdd: Double = Importance.probability(Uniform(List.tabulate(UpperBound)(n=>n):_*),( (n: (Int)) => n % 2 == 1)) // probability that the number of balls was odd
 
   // Is the posteriorOdd greater than 1/2?
 

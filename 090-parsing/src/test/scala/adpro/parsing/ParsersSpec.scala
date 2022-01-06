@@ -21,7 +21,7 @@ class ParsersSpec
         this.map2[Int,Int,Int] _,
         this.many1[Unit] _,
         this.manyA
-      )
+        )
     }
     // Without the above the code below may reflect the result of compilation
     // with an old version of the main module, so the test result is misleading.

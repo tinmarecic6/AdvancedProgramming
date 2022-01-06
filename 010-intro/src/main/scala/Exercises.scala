@@ -51,4 +51,6 @@ object Exercises extends App with ExercisesInterface {
 
   def compose[A,B,C] (f: B => C, g: A => B) : A => C = (a:A) => f(g(a))
 
+//val myList = Array(6,2,3,4,5,6)
+//println(isSorted(Array(6,2,3,4,5,6)))
 }

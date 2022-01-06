@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 *.pdf
+=======
+<<<<<<< HEAD
+2021-adpro/
+=======
+>>>>>>> 6e579b937ff6619d9dc2d199bf49ec9c4cc72299
 *SOLUTION*
 *~
 *.bak
@@ -26,3 +32,4 @@ project/plugins/project/
 .ensime
 
 .DS_Store
+>>>>>>> 98e22d487e38137f95cb314b05e8e7d8a23d09e1

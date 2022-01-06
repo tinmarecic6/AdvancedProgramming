@@ -16,5 +16,7 @@ object MyModule {
   def main(args: Array[String]): Unit = {
     assert (magic - 84 == magic.-(84))
     println (formatAbs (magic-100))
+    println(square(magic))
   }
+  def fib (n: Int): Int = if (n==1) 0 else if(n==2) 1 else fib(n-1) + fib(n-2)
 }

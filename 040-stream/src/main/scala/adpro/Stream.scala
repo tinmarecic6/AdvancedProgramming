@@ -43,21 +43,39 @@ sealed trait Stream[+A] {
 
   // Exercise 2
 
-  def toList: List[A] = ???
+  def toList: List[A] = this match{
+    case Empty => List()
+    case Cons (h,t)=>h()::t().toList
+  }
 
   // Exercise 3
 
-  def take (n: Int): Stream[A] = ???
+  def take (n: Int): Stream[A] = this match{
+    case Empty => Empty
+    case Cons(h,t) => if(n==0) Empty else cons(h(),t().take(n-1))
+  }
 
-  def drop (n: Int): Stream[A] = ???
+  def drop (n: Int): Stream[A] = this match {
+    case Empty => Empty
+    case Cons(h,t)=> if (n==0) this else t().drop(n-1)
+  }
 
   // Exercise 4
 
-  def takeWhile (p: A => Boolean): Stream[A] = ???
+  def takeWhile (p: A => Boolean): Stream[A] = this match{
+    case Cons(h,t) =>{
+      if (p(h())) cons(h(),t().takeWhile(p))
+      else empty
+    }
+    case _ => empty
+  }
 
   //Exercise 5
 
-  def forAll (p: A => Boolean): Boolean = ???
+  def forAll (p: A => Boolean): Boolean = this match  {
+    case Empty => true
+    case Cons(h,t) => if (p(h())) t().forAll(p) else false
+  }
 
 
   //Exercise 6
@@ -66,13 +84,13 @@ sealed trait Stream[+A] {
 
   //Exercise 7
 
-  def headOption2: Option[A] = ???
+  def headOption2: Option[A] = foldRight[Option[A]](None)((a,_)=>Some(a))
 
   //Exercise 8 The types of these functions are omitted as they are a part of the exercises
 
-  def map = ???
+  def map[B] (f:A=>B): Stream[B] = foldRight[Stream[B]](Empty)((a,acc)=>cons(f(a),acc))
 
-  def filter = ???
+  def filter (f:A=>Boolean):Stream[A] = foldRight[Stream[A]](Empty)((a,acc)=>if (f(a)) cons(a,acc) else acc)
 
   def append = ???
 
@@ -114,11 +132,11 @@ object Stream {
 
   // Exercise 1
 
-  def from (n: Int): Stream[Int] = ???
+  def from (n: Int): Stream[Int] = cons(n,from(n+1))
 
-  def to (n: Int): Stream[Int] = ???
+  def to (n: Int): Stream[Int] = cons(n,to(n-1))
 
-  val naturals: Stream[Int] = ???
+  val naturals: Stream[Int] = from(1)
 
   //Exercise 10
   //Put your answer here:
@@ -131,5 +149,8 @@ object Stream {
 
   def fibs1  = ???
   def from1 = ???
+  //Lecture quiz
+  def even_from(n: Int) : Stream[Int] = from (n) filter { _%2==0}
+  
 
 }

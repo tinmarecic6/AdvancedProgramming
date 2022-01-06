@@ -18,6 +18,14 @@ class StreamSpec
       Stream.unfold (()) { case () => None } should be (Empty)
     }
   }
+  "Exercise 8" -{
+    "naturals.map (_*2).drop (30).take (50).toList.size should be(50)" in {
+      Stream.naturals.map (_*2).drop (30).take (50).toList.size should be(50)
+    }
+    "naturals.drop (42).filter (_%2 ==0).take (30).toList" in {
+      Stream.naturals.drop (42).filter (_%2 ==0).take (30).toList.size should be (30)
+    }
+  }
 
   "Exercise 7" - {
 	  "headOption2 (empty)" in {

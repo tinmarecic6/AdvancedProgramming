@@ -67,10 +67,22 @@ trait Monoid[A] { self =>
     // Exercise 6
 
     def homomorphism[B] (f: A => B) (mb: Monoid[B])
-      (implicit arbA: Arbitrary[A]) = ???
+      (implicit arbA: Arbitrary[A]) ={ forAll { 
+        (a:A, b: A) => 
+          f(self.op(a,b)) should be (mb.op(f(a), f(b))) 
+          f(self.zero) should be (mb.zero)
+        
+      }}
 
     def isomorphism[B: Arbitrary] (f: A => B, g: B => A) (mb: Monoid[B])
-      (implicit arbA: Arbitrary[A]) = ???
+      (implicit arbA: Arbitrary[A]) = { forAll { 
+        (a:A, b: A,c:B,d:B) => 
+          f(self.op(a,b)) should be (mb.op(f(a), f(b))) 
+          f(self.zero) should be (mb.zero)
+          g(mb.op(c,d)) should be (self.op(g(c), g(d))) 
+          g(mb.zero) should be (self.zero)
+          
+      }}
 
     // Exercise 7 continues in MonoidExercisesSpec below
 
@@ -104,21 +116,39 @@ object Monoid {
 
   // Exercise 1
 
-  lazy val intAddition: Monoid[Int] = ???
+  lazy val intAddition: Monoid[Int] = new Monoid[Int] {
+    def op(a1: Int, a2: Int)=a1+a2
+    val zero = 0
+  }
 
 
-  lazy val intMultiplication: Monoid[Int] = ???
+  lazy val intMultiplication: Monoid[Int] = new Monoid[Int] {
+    def op(a1: Int, a2: Int)=a1*a2
+    val zero = 1
+  }
 
 
-  lazy val booleanOr: Monoid[Boolean] = ???
+  lazy val booleanOr: Monoid[Boolean] = new Monoid[Boolean] {
+    def op(a1: Boolean, a2: Boolean) = a1 || a2
+    val zero = false
+  }
 
 
-  lazy val booleanAnd: Monoid[Boolean] = ???
+  lazy val booleanAnd: Monoid[Boolean] = new Monoid[Boolean] {
+    def op(a1: Boolean, a2: Boolean)=a1 && a2
+    val zero = true
+  }
 
 
   // Exercise 2
 
-  def optionMonoid[A]: Monoid[Option[A]] = ???
+  def optionMonoid[A]: Monoid[Option[A]] = new Monoid[Option[A]] {
+    def op(a: Option[A],b: Option[A]) = a match{
+      case Some(_) => a
+      case None => b
+    }
+    val zero: Option[A] = None
+  }
 
 
   def optionMonoidLift[A: Monoid]: Monoid[Option[A]] = ???
@@ -126,14 +156,22 @@ object Monoid {
 
   // Exercise 3
 
-  def endoMonoid[A]: Monoid[A => A] = ???
+  def endoMonoid[A]: Monoid[A => A] = new Monoid[A => A]{
+    def op(a1:A => A,a2 : A => A ) : A => A = a1 compose a2 
+    val zero: A => A = identity
+  }
 
 
   // Exercise 4 continues below in MonoidExercisesSpec
 
   // Exercise 5
 
-  def foldMap[A,B: Monoid] (as: List[A]) (f: A => B): B = ???
+  def foldMap[A,B: Monoid] (as: List[A]) (f: A => B): B = {
+    val m = implicitly[Monoid[B]] 
+    as.foldRight(m.zero)((a,b)=>m.op(b,f(a)))
+
+  }
+  
 
   // Exercise 6 continues above in Monoid.Laws
 
@@ -184,15 +222,24 @@ class MonoidExercisesSpec
 
   "Exercise 4 (tests exercises 1-2, written by student)" - {
 
-    "intAddition is a monoid" in ???
+    "intAddition is a monoid" in 
+    M.intAddition.Laws.monoid
 
-    "intMultiplication is a monoid" in ???
+    
+   
 
-    "booleanOr is a monoid" in ???
+    "intMultiplication is a monoid" in 
+    M.intMultiplication.Laws.monoid
+    
 
-    "booleanAnd is a monoid" in ???
+    "booleanOr is a monoid" in 
+    M.booleanOr.Laws.monoid
+
+    "booleanAnd is a monoid" in 
+    M.booleanAnd.Laws.monoid
 
     "optionMonoid is a monoid" in ???
+    
 
     "optionMonoidLift is a monoid" in ???
 
