@@ -24,22 +24,31 @@ object Exercises extends App with ExercisesInterface {
 
   // Exercise 3
 
-  def fib (n: Int): Int = ???
+  def fib (n: Int): Int = if (n==1) 0 else if(n==2) 1 else fib(n-1) + fib(n-2)
 
   // Exercise 4
 
-  def isSorted[A] (as: Array[A], comparison: (A,A) =>  Boolean): Boolean = ???
+  def isSorted[A] (as: Array[A], comparison: (A,A) =>  Boolean): Boolean = {
+    def iterator(as:Array[A], a:Int, b:Int):Boolean={
+      if(as.size == 0 || as.size==1) true else
+        if(b+1<=as.size)
+          if(comparison(as(a),as(b))) iterator(as,b,b+1) else false
+        else
+          true
+    }
+    iterator(as,0,1)
+  } 
 
   // Exercise 5
 
-  def curry[A,B,C] (f: (A,B)=>C): A => (B => C) = ???
+  def curry[A,B,C] (f: (A,B)=>C): A => (B => C) = (a:A)=>((b:B)=>f(a,b))
 
   // Exercise 6
 
-  def uncurry[A,B,C] (f: A => B => C): (A,B) => C = ???
+  def uncurry[A,B,C] (f: A => B => C): (A,B) => C = (a:A,b:B)=>f(a:A)(b:B)
 
   // Exercise 7
 
-  def compose[A,B,C] (f: B => C, g: A => B) : A => C = ???
+  def compose[A,B,C] (f: B => C, g: A => B) : A => C = (a:A) => f(g(a))
 
 }
